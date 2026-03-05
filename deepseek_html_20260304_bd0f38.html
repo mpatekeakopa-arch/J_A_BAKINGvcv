@@ -1,0 +1,1634 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>J.A Baking — Equipment & Ingredients</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --brown: #D32F2F;
+      --brown-dk: #B71C1C;
+      --gold: #D4960A;
+      --gold-lt: #F5C842;
+      --cream: #FDF6EC;
+      --warm: #F9EDD8;
+      --mid: #4A3728;
+      --grey: #7A6A5A;
+      --border: #E8D9C8;
+      --white: #FFFFFF;
+      --dark: #1E140A;
+      --radius: 5px;
+    }
+    html { scroll-behavior: smooth; }
+    body { 
+      font-family: 'DM Sans', sans-serif; 
+      background: var(--white); 
+      color: var(--dark); 
+      overflow-x: hidden;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    main { flex: 1; }
+    a { text-decoration: none; color: inherit; }
+    ul { list-style: none; }
+    img { display: block; max-width: 100%; }
+    button { cursor: pointer; border: none; font-family: inherit; }
+
+    /* ── TOPBAR ─────────────────────────────────── */
+    .topbar {
+      background: var(--dark);
+      color: #bbb;
+      font-size: 12px;
+      padding: 7px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .topbar a { color: #ccc; transition: color .2s; }
+    .topbar a:hover { color: var(--gold-lt); }
+    .topbar-links { display: flex; gap: 20px; }
+
+    /* ── HEADER ─────────────────────────────────── */
+    .header {
+      background: var(--white);
+      border-bottom: 3px solid var(--brown);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 14px rgba(123,63,0,.12);
+    }
+    .header-inner {
+      max-width: 1300px;
+      margin: 0 auto;
+      padding: 0 24px;
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      height: 74px;
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      flex-shrink: 0;
+    }
+    .logo-icon {
+      width: 46px; height: 46px;
+      background: linear-gradient(135deg, var(--brown), var(--gold));
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 3px 10px rgba(123,63,0,.3);
+    }
+    .logo-icon svg { width: 26px; height: 26px; stroke: white; fill: none; stroke-width: 2; }
+    .logo-text { line-height: 1.1; }
+    .logo-name {
+      font-family: 'Playfair Display', serif;
+      font-weight: 900;
+      font-size: 22px;
+      color: var(--brown);
+      letter-spacing: -.3px;
+    }
+    .logo-sub {
+      font-size: 10px;
+      font-weight: 500;
+      color: var(--grey);
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+    }
+
+    .search-bar { flex: 1; display: flex; max-width: 500px; }
+    .search-bar input {
+      flex: 1;
+      padding: 10px 16px;
+      border: 2px solid var(--border);
+      border-right: none;
+      border-radius: var(--radius) 0 0 var(--radius);
+      font-size: 14px;
+      font-family: inherit;
+      outline: none;
+      transition: border-color .2s;
+      background: var(--cream);
+    }
+    .search-bar input:focus { border-color: var(--brown); background: white; }
+    .search-bar button {
+      background: var(--brown);
+      color: white;
+      padding: 0 18px;
+      border-radius: 0 var(--radius) var(--radius) 0;
+      transition: background .2s;
+    }
+    .search-bar button:hover { background: var(--brown-dk); }
+    .search-bar button svg { width: 18px; height: 18px; stroke: white; fill: none; stroke-width: 2.5; display: block; }
+
+    .header-actions { display: flex; align-items: center; gap: 6px; margin-left: auto; }
+    .header-btn {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 3px;
+      padding: 8px 14px;
+      border-radius: var(--radius);
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--mid);
+      background: none;
+      transition: background .2s, color .2s;
+      letter-spacing: .5px;
+      text-transform: uppercase;
+    }
+    .header-btn:hover { background: var(--warm); color: var(--brown); }
+    .header-btn svg { width: 22px; height: 22px; stroke: currentColor; fill: none; stroke-width: 2; }
+    .header-btn.cart { background: var(--brown); color: white; position: relative; }
+    .header-btn.cart:hover { background: var(--brown-dk); }
+    .cart-count {
+      position: absolute; top: 4px; right: 8px;
+      background: var(--gold-lt); color: var(--dark);
+      font-size: 10px; font-weight: 800;
+      width: 17px; height: 17px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+    }
+
+    /* ── NAV ────────────────────────────────────── */
+    .nav { background: var(--brown); }
+    .nav-inner {
+      max-width: 1300px;
+      margin: 0 auto;
+      padding: 0 24px;
+      display: flex;
+      align-items: stretch;
+    }
+    .nav-item { position: relative; }
+    .nav-item > a, .nav-item > button {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      padding: 13px 18px;
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 600;
+      font-size: 14px;
+      letter-spacing: .5px;
+      text-transform: uppercase;
+      color: #f5e8d8;
+      background: none;
+      transition: background .2s;
+      white-space: nowrap;
+      border-bottom: 3px solid transparent;
+    }
+    .nav-item > a:hover,
+    .nav-item > button:hover,
+    .nav-item.active > a { background: rgba(0,0,0,.2); border-bottom-color: var(--gold-lt); }
+    .nav-item > a svg, .nav-item > button svg { width: 13px; height: 13px; fill: #f5e8d8; }
+
+    .dropdown {
+      display: none;
+      position: absolute;
+      top: 100%; left: 0;
+      background: white;
+      min-width: 220px;
+      box-shadow: 0 8px 32px rgba(0,0,0,.15);
+      border-top: 3px solid var(--gold);
+      border-radius: 0 0 var(--radius) var(--radius);
+      z-index: 200;
+    }
+    .nav-item:hover .dropdown { display: block; }
+    .dropdown a {
+      display: block;
+      padding: 11px 20px;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--mid);
+      border-bottom: 1px solid var(--border);
+      transition: background .15s, color .15s, padding-left .15s;
+    }
+    .dropdown a:last-child { border-bottom: none; }
+    .dropdown a:hover { background: var(--cream); color: var(--brown); padding-left: 28px; }
+
+    /* ── PAGE HEADER ──────────────────────────── */
+    .page-header {
+      background: var(--warm);
+      padding: 60px 24px;
+      text-align: center;
+      border-bottom: 2px solid var(--gold);
+    }
+    .page-header h1 {
+      font-family: 'Playfair Display', serif;
+      font-weight: 900;
+      font-size: 48px;
+      color: var(--brown);
+      margin-bottom: 12px;
+    }
+    .page-header p {
+      font-size: 18px;
+      color: var(--grey);
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    .breadcrumb {
+      max-width: 1300px;
+      margin: 20px auto 0;
+      padding: 0 24px;
+      font-size: 14px;
+      color: var(--grey);
+    }
+    .breadcrumb a { color: var(--brown); }
+    .breadcrumb a:hover { text-decoration: underline; }
+
+    /* ── FILTER BAR ───────────────────────────── */
+    .filter-bar {
+      background: var(--cream);
+      padding: 16px 24px;
+      border-bottom: 1px solid var(--border);
+    }
+    .filter-inner {
+      max-width: 1300px;
+      margin: 0 auto;
+      display: flex;
+      gap: 20px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .filter-select {
+      padding: 10px 20px;
+      border: 2px solid var(--border);
+      border-radius: var(--radius);
+      font-family: inherit;
+      background: white;
+      min-width: 200px;
+      cursor: pointer;
+    }
+    .filter-select:focus {
+      outline: none;
+      border-color: var(--brown);
+    }
+    .filter-tags {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .filter-tag {
+      background: white;
+      border: 1px solid var(--border);
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 13px;
+      cursor: pointer;
+      transition: all .2s;
+    }
+    .filter-tag:hover {
+      background: var(--brown);
+      color: white;
+      border-color: var(--brown);
+    }
+    .filter-tag.active {
+      background: var(--brown);
+      color: white;
+      border-color: var(--brown);
+    }
+
+    /* ── HERO SLIDER ────────────────────────────── */
+    .hero { position: relative; overflow: hidden; height: 500px; }
+    .slide { position: absolute; inset: 0; opacity: 0; transition: opacity .7s ease; display: flex; align-items: center; }
+    .slide.active { opacity: 1; }
+    .slide-bg {
+      position: absolute; inset: 0;
+      background-size: cover; background-position: center;
+      transform: scale(1.04); transition: transform 8s ease;
+    }
+    .slide.active .slide-bg { transform: scale(1); }
+    .slide-overlay { position: absolute; inset: 0; background: linear-gradient(90deg, rgba(30,20,10,.82) 0%, rgba(30,20,10,.35) 60%, transparent 100%); }
+    .slide-content { position: relative; z-index: 2; max-width: 1300px; margin: 0 auto; padding: 0 64px; color: white; width: 100%; }
+    .slide-tag {
+      display: inline-block;
+      background: var(--gold);
+      color: white;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 4px 14px;
+      border-radius: 20px;
+      margin-bottom: 16px;
+    }
+    .slide-title {
+      font-family: 'Playfair Display', serif;
+      font-weight: 900;
+      font-size: clamp(38px, 5vw, 62px);
+      line-height: 1.05;
+      margin-bottom: 14px;
+    }
+    .slide-subtitle { font-size: 16px; font-weight: 300; max-width: 420px; margin-bottom: 30px; opacity: .9; line-height: 1.6; }
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--brown); color: white;
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 700; font-size: 14px;
+      letter-spacing: .8px; text-transform: uppercase;
+      padding: 14px 28px; border-radius: var(--radius);
+      transition: background .2s, transform .15s;
+    }
+    .btn-primary:hover { background: var(--brown-dk); transform: translateY(-2px); }
+    .btn-primary svg { width: 17px; height: 17px; stroke: white; fill: none; stroke-width: 2.5; }
+    .btn-outline {
+      display: inline-flex; align-items: center; gap: 8px;
+      border: 2px solid rgba(255,255,255,.6); color: white;
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 700; font-size: 14px;
+      letter-spacing: .8px; text-transform: uppercase;
+      padding: 12px 26px; border-radius: var(--radius);
+      margin-left: 12px;
+      transition: background .2s, border-color .2s;
+    }
+    .btn-outline:hover { background: rgba(255,255,255,.15); border-color: white; }
+
+    .slider-dots { position: absolute; bottom: 22px; left: 50%; transform: translateX(-50%); display: flex; gap: 8px; z-index: 10; }
+    .dot { width: 10px; height: 10px; border-radius: 50%; background: rgba(255,255,255,.4); cursor: pointer; transition: background .2s, transform .2s; }
+    .dot.active { background: var(--gold-lt); transform: scale(1.35); }
+    .slider-arrow {
+      position: absolute; top: 50%; transform: translateY(-50%);
+      background: rgba(30,20,10,.45); color: white; border: none;
+      width: 44px; height: 44px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      z-index: 10; cursor: pointer; transition: background .2s;
+    }
+    .slider-arrow:hover { background: var(--brown); }
+    .slider-arrow.prev { left: 20px; }
+    .slider-arrow.next { right: 20px; }
+    .slider-arrow svg { width: 20px; height: 20px; stroke: white; fill: none; stroke-width: 2.5; }
+
+    .slide-1 .slide-bg { background: linear-gradient(135deg, #2c1a0a 0%, #7b3f00 50%, #c47a20 100%); }
+    .slide-2 .slide-bg { background: linear-gradient(135deg, #1a0e0e 0%, #5c2020 50%, #a04030 100%); }
+    .slide-3 .slide-bg { background: linear-gradient(135deg, #1a1a0a 0%, #4a4010 50%, #8a7020 100%); }
+
+    /* ── CATEGORIES ─────────────────────────────── */
+    .categories { background: var(--cream); border-bottom: 1px solid var(--border); }
+    .categories-inner { max-width: 1300px; margin: 0 auto; padding: 32px 24px; }
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-weight: 800; font-size: 26px;
+      margin-bottom: 22px; color: var(--dark);
+    }
+    .section-title span { color: var(--brown); }
+    .cat-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 14px; }
+    .cat-card {
+      display: flex; flex-direction: column;
+      align-items: center; gap: 10px;
+      padding: 20px 12px;
+      background: white;
+      border: 1.5px solid var(--border);
+      border-radius: 10px;
+      text-align: center;
+      font-size: 12px; font-weight: 600;
+      color: var(--mid); text-transform: uppercase; letter-spacing: .5px;
+      cursor: pointer;
+      transition: border-color .2s, box-shadow .2s, color .2s, transform .2s;
+    }
+    .cat-card:hover { border-color: var(--brown); color: var(--brown); box-shadow: 0 6px 20px rgba(123,63,0,.12); transform: translateY(-3px); }
+    .cat-icon { width: 52px; height: 52px; display: flex; align-items: center; justify-content: center; }
+    .cat-icon svg { width: 38px; height: 38px; }
+
+    /* ── SPECIALS BAND ──────────────────────────── */
+    .specials-band { background: var(--brown); }
+    .specials-band-inner {
+      max-width: 1300px; margin: 0 auto;
+      padding: 18px 24px;
+      display: flex; align-items: center; justify-content: space-between; gap: 20px;
+    }
+    .specials-label {
+      font-family: 'Playfair Display', serif;
+      font-weight: 800; font-size: 22px;
+      color: white; display: flex; align-items: center; gap: 14px;
+    }
+    .specials-label .badge { background: var(--gold-lt); color: var(--dark); font-family: 'DM Sans', sans-serif; font-size: 12px; font-weight: 700; padding: 3px 12px; border-radius: 20px; }
+    .specials-band a {
+      font-weight: 700; font-size: 14px; text-transform: uppercase;
+      letter-spacing: 1px; color: white;
+      border: 2px solid rgba(255,255,255,.5);
+      padding: 8px 20px; border-radius: var(--radius);
+      transition: background .2s;
+    }
+    .specials-band a:hover { background: rgba(255,255,255,.15); border-color: white; }
+
+    /* ── PRODUCT GRID ───────────────────────────── */
+    .section { max-width: 1300px; margin: 0 auto; padding: 52px 24px; }
+    .section-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 26px; }
+    .view-all {
+      font-size: 13px; font-weight: 600;
+      color: var(--brown); text-transform: uppercase; letter-spacing: .5px;
+      display: flex; align-items: center; gap: 4px;
+    }
+    .view-all:hover { text-decoration: underline; }
+    .view-all svg { width: 14px; height: 14px; stroke: currentColor; fill: none; stroke-width: 2.5; }
+    .product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 24px; }
+    .product-card {
+      background: white;
+      border: 1.5px solid var(--border);
+      border-radius: 10px;
+      overflow: hidden;
+      transition: box-shadow .25s, transform .25s;
+      cursor: pointer;
+    }
+    .product-card:hover { box-shadow: 0 10px 36px rgba(123,63,0,.13); transform: translateY(-4px); }
+    .product-img {
+      height: 250px;
+      display: flex; align-items: center; justify-content: center;
+      position: relative; overflow: hidden;
+    }
+    .product-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform .5s ease;
+    }
+    .product-card:hover .product-img img {
+      transform: scale(1.1);
+    }
+    .product-badge {
+      position: absolute; top: 10px; left: 10px;
+      background: var(--brown); color: white;
+      font-size: 10px; font-weight: 700;
+      padding: 4px 10px; border-radius: 20px;
+      text-transform: uppercase; letter-spacing: .5px;
+    }
+    .product-badge.new { background: #1a6e3a; }
+    .product-badge.sale { background: #b91c1c; }
+    .product-info { padding: 16px 16px 20px; }
+    .product-brand { font-size: 11px; font-weight: 700; color: var(--grey); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 6px; }
+    .product-name { font-size: 15px; font-weight: 500; color: var(--dark); line-height: 1.45; margin-bottom: 12px; }
+    .product-price-row { display: flex; align-items: center; justify-content: space-between; }
+    .product-price { font-family: 'Playfair Display', serif; font-weight: 800; font-size: 24px; color: var(--brown); }
+    .product-price small { font-size: 16px; font-weight: 700; }
+    .product-old-price { font-size: 14px; color: var(--grey); text-decoration: line-through; margin-left: 8px; }
+    .add-btn {
+      background: var(--brown); color: white;
+      width: 38px; height: 38px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      transition: background .2s, transform .15s;
+    }
+    .add-btn:hover { background: var(--brown-dk); transform: scale(1.12); }
+    .add-btn svg { width: 18px; height: 18px; stroke: white; fill: none; stroke-width: 2.5; }
+    
+    /* Category background colors */
+    .p-equipment { background: linear-gradient(135deg, #e8e0d0, #d0c0a8); }
+    .p-ingredients { background: linear-gradient(135deg, #f5e8d8, #e8d0b0); }
+    .p-cooking { background: linear-gradient(135deg, #f0e0d0, #d8b890); }
+    .p-boiling { background: linear-gradient(135deg, #d0e0f0, #a0c0e0); }
+    .p-decorating { background: linear-gradient(135deg, #ffe0f0, #ffb0d0); }
+    .p-bread { background: linear-gradient(135deg, #f5d8b0, #e0b080); }
+    .p-chocolate { background: linear-gradient(135deg, #e0d0c0, #b09070); }
+    .p-storage { background: linear-gradient(135deg, #d0e0d0, #a0c0a0); }
+    .p-piping { background: linear-gradient(135deg, #f0d8f0, #d0a0d0); }
+    .p-moulds { background: linear-gradient(135deg, #e0e0f0, #b0b0e0); }
+    .p-warm { background: linear-gradient(135deg, #fdf0e0, #f5d8a8); }
+    .p-pink { background: linear-gradient(135deg, #fde8f0, #f5a8c8); }
+    .p-cream { background: linear-gradient(135deg, #fdfaec, #f5ecc0); }
+    .p-brown { background: linear-gradient(135deg, #f5e8d8, #d4b08a); }
+    .p-green { background: linear-gradient(135deg, #e8f5ec, #a8d8b0); }
+    .p-grey { background: linear-gradient(135deg, #f0f0f0, #d0d0d0); }
+
+    /* ── INFO STRIPS ────────────────────────────── */
+    .info-strips { background: var(--dark); }
+    .info-strips-inner { max-width: 1300px; margin: 0 auto; padding: 0 24px; display: grid; grid-template-columns: repeat(4, 1fr); }
+    .info-strip {
+      display: flex; align-items: center; gap: 16px;
+      padding: 28px 20px;
+      border-right: 1px solid rgba(255,255,255,.07);
+    }
+    .info-strip:last-child { border-right: none; }
+    .strip-icon { width: 48px; height: 48px; background: var(--brown); border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .strip-icon svg { width: 22px; height: 22px; stroke: white; fill: none; stroke-width: 2; }
+    .strip-title { font-family: 'Playfair Display', serif; font-weight: 700; font-size: 15px; color: white; margin-bottom: 3px; }
+    .strip-desc { font-size: 12px; color: #999; font-weight: 300; }
+
+    /* ── PROMO CARDS ────────────────────────────── */
+    .promo-row { max-width: 1300px; margin: 0 auto; padding: 0 24px 52px; display: grid; grid-template-columns: 1.2fr 1fr; gap: 20px; }
+    .promo-card {
+      border-radius: 12px; overflow: hidden;
+      position: relative; min-height: 250px;
+      display: flex; align-items: flex-end;
+      padding: 30px; cursor: pointer;
+    }
+    .promo-bg { position: absolute; inset: 0; background-size: cover; background-position: center; transition: transform .4s ease; }
+    .promo-card:hover .promo-bg { transform: scale(1.05); }
+    .promo-overlay { position: absolute; inset: 0; }
+    .promo-content { position: relative; z-index: 2; color: white; }
+    .promo-title { font-family: 'Playfair Display', serif; font-weight: 900; font-size: 32px; line-height: 1.05; margin-bottom: 10px; }
+    .promo-sub { font-size: 15px; font-weight: 300; margin-bottom: 20px; opacity: .9; line-height: 1.5; max-width: 300px; }
+    .promo-1 .promo-bg { background: linear-gradient(135deg, #2c1a0a, #8b5e20); }
+    .promo-1 .promo-overlay { background: linear-gradient(to top, rgba(0,0,0,.8) 0%, rgba(0,0,0,.1) 100%); }
+    .promo-2 .promo-bg { background: linear-gradient(135deg, #1a1a0a, #4a4010); }
+    .promo-2 .promo-overlay { background: linear-gradient(to top, rgba(0,0,0,.8) 0%, rgba(0,0,0,.1) 100%); }
+
+    /* ── CREDIT SECTION ─────────────────────────── */
+    .credit-section { background: var(--warm); border-top: 1px solid var(--border); }
+    .credit-inner { max-width: 1300px; margin: 0 auto; padding: 52px 24px; display: grid; grid-template-columns: 1fr 1.5fr; gap: 52px; align-items: center; }
+    .credit-text h2 { font-family: 'Playfair Display', serif; font-weight: 900; font-size: 36px; line-height: 1.15; margin-bottom: 14px; }
+    .credit-text h2 span { color: var(--brown); }
+    .credit-text p { font-size: 16px; color: var(--grey); font-weight: 300; line-height: 1.7; margin-bottom: 24px; }
+    .benefit-list { display: flex; flex-direction: column; gap: 15px; }
+    .benefit-item { display: flex; align-items: flex-start; gap: 12px; font-size: 15px; color: var(--mid); }
+    .benefit-item svg { width: 20px; height: 20px; stroke: var(--brown); fill: none; stroke-width: 2.5; flex-shrink: 0; margin-top: 2px; }
+
+    /* ── FOOTER ─────────────────────────────────── */
+    .footer { background: #120C06; color: #ccc; margin-top: auto; }
+    .footer-main {
+      max-width: 1300px; margin: 0 auto;
+      padding: 56px 24px 36px;
+      display: grid; grid-template-columns: 1.6fr 1fr 1fr 1.2fr; gap: 44px;
+    }
+    .footer-logo-name { font-family: 'Playfair Display', serif; font-weight: 900; font-size: 22px; color: var(--gold-lt); margin-bottom: 4px; }
+    .footer-logo-sub { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: #888; margin-bottom: 16px; }
+    .footer-brand p { font-size: 14px; color: #888; font-weight: 300; line-height: 1.75; }
+    .footer-col h4 {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700; font-size: 16px;
+      color: white; margin-bottom: 16px;
+      padding-bottom: 10px;
+      border-bottom: 2px solid var(--brown);
+      display: inline-block;
+    }
+    .footer-col ul { display: flex; flex-direction: column; gap: 12px; }
+    .footer-col li a { font-size: 14px; color: #888; transition: color .2s; }
+    .footer-col li a:hover { color: var(--gold-lt); }
+    .footer-contact p { font-size: 14px; color: #888; margin-bottom: 12px; display: flex; align-items: flex-start; gap: 8px; }
+    .footer-contact svg { width: 16px; height: 16px; stroke: var(--gold); fill: none; stroke-width: 2; flex-shrink: 0; margin-top: 3px; }
+    .social-links { display: flex; gap: 12px; margin-top: 24px; }
+    .social-link { width: 38px; height: 38px; background: rgba(255,255,255,.07); border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: background .2s; }
+    .social-link:hover { background: var(--brown); }
+    .social-link svg { width: 18px; height: 18px; stroke: white; fill: none; stroke-width: 2; }
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,.06);
+      padding: 20px 40px;
+      max-width: 1300px; margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between;
+      font-size: 13px; color: #666;
+    }
+    .footer-bottom a { color: #666; transition: color .2s; }
+    .footer-bottom a:hover { color: var(--gold-lt); }
+
+    /* ── MODAL ──────────────────────────────────── */
+    .modal-overlay {
+      position: fixed; inset: 0;
+      background: rgba(0,0,0,.7);
+      z-index: 998;
+      display: flex; align-items: center; justify-content: center;
+      opacity: 0; pointer-events: none;
+      transition: opacity .3s;
+    }
+    .modal-overlay.open { opacity: 1; pointer-events: all; }
+    .modal {
+      background: white; border-radius: 16px;
+      padding: 40px; max-width: 500px; width: 90%;
+      transform: scale(.95); transition: transform .3s;
+      position: relative;
+    }
+    .modal-overlay.open .modal { transform: scale(1); }
+    .modal h2 { font-family: 'Playfair Display', serif; font-weight: 800; font-size: 28px; margin-bottom: 8px; }
+    .modal p { font-size: 15px; color: var(--grey); margin-bottom: 24px; line-height: 1.6; }
+    .modal input, .modal select {
+      width: 100%; padding: 12px 18px;
+      border: 2px solid var(--border);
+      border-radius: var(--radius);
+      font-size: 15px; font-family: inherit;
+      margin-bottom: 16px; outline: none;
+      transition: border-color .2s;
+    }
+    .modal input:focus, .modal select:focus { border-color: var(--brown); }
+    .modal-close { position: absolute; top: 18px; right: 20px; background: none; font-size: 24px; color: var(--grey); }
+    .modal-close:hover { color: var(--brown); }
+    .modal-btns { display: flex; gap: 12px; }
+    .btn-cancel {
+      padding: 12px 24px;
+      border: 2px solid var(--border);
+      border-radius: var(--radius);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 700; font-size: 14px;
+      color: var(--grey); background: none;
+      transition: border-color .2s;
+    }
+    .btn-cancel:hover { border-color: var(--grey); }
+
+    /* ── TOAST ──────────────────────────────────── */
+    .toast {
+      position: fixed; bottom: 30px; right: 30px;
+      background: var(--dark); color: white;
+      padding: 16px 24px; border-radius: 8px;
+      font-size: 15px; font-weight: 500;
+      z-index: 9999;
+      display: flex; align-items: center; gap: 12px;
+      box-shadow: 0 8px 30px rgba(0,0,0,.3);
+      transform: translateX(130%);
+      transition: transform .35s cubic-bezier(.25,.8,.25,1);
+    }
+    .toast.show { transform: translateX(0); }
+    .toast svg { width: 20px; height: 20px; stroke: #4ade80; fill: none; stroke-width: 2.5; }
+
+    /* ── COOKIE BANNER ──────────────────────────── */
+    .cookie-banner {
+      position: fixed; bottom: 20px; left: 20px;
+      max-width: 500px;
+      background: var(--dark); color: white;
+      border-radius: 12px; padding: 24px 28px;
+      box-shadow: 0 8px 40px rgba(0,0,0,.3);
+      z-index: 999;
+      display: flex; gap: 20px; align-items: flex-start;
+      font-size: 14px; font-weight: 300; line-height: 1.65;
+      animation: slideUp .4s ease;
+    }
+    @keyframes slideUp { from { transform: translateY(40px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+    .cookie-banner.hidden { display: none; }
+    .cookie-text strong { display: block; font-weight: 600; margin-bottom: 5px; font-size: 15px; }
+    .cookie-text a { color: var(--gold-lt); }
+    .cookie-actions { margin-top: 15px; }
+    .btn-accept { background: var(--brown); color: white; padding: 10px 28px; border-radius: var(--radius); font-size: 14px; font-weight: 700; font-family: inherit; text-transform: uppercase; letter-spacing: .5px; transition: background .2s; }
+    .btn-accept:hover { background: var(--brown-dk); }
+    .btn-dismiss { font-size: 22px; background: none; color: #888; padding: 0 6px; }
+    .btn-dismiss:hover { color: white; }
+
+    /* ── RESPONSIVE ─────────────────────────────── */
+    .whatsapp-float {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      background: #25d366;
+      color: white;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 12px rgba(0,0,0,.15);
+      z-index: 1000;
+      transition: transform .3s, background .3s;
+    }
+    .whatsapp-float:hover {
+      transform: scale(1.1);
+      background: #128c7e;
+      color: white;
+    }
+    .whatsapp-float svg {
+      width: 32px;
+      height: 32px;
+      fill: currentColor;
+    }
+    @media (max-width: 900px) {
+      .info-strips-inner { grid-template-columns: 1fr 1fr; }
+      .info-strip { border-right: none; border-bottom: 1px solid rgba(255,255,255,.07); }
+      .footer-main { grid-template-columns: 1fr 1fr; }
+      .promo-row { grid-template-columns: 1fr; }
+      .credit-inner { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 640px) {
+      .topbar { display: none; }
+      .header-inner { padding: 0 14px; }
+      .hero { height: 400px; }
+      .slide-content { padding: 0 24px; }
+      .slide-title { font-size: 38px; }
+      .footer-main { grid-template-columns: 1fr; }
+      .info-strips-inner { grid-template-columns: 1fr; }
+      .header-btn:not(.cart) span { display: none; }
+      .filter-inner { flex-direction: column; align-items: stretch; }
+      .filter-select { width: 100%; }
+    }
+  </style>
+</head>
+<body>
+  <!-- TOPBAR -->
+  <div class="topbar">
+    <div class="topbar-links">
+      <a href="#" onclick="showPage('about')">About J.A Baking</a>
+      <a href="#" onclick="showPage('contact')">Contact Us</a>
+    </div>
+    <div class="topbar-links">
+      <a href="tel:63085818">📞 63085818</a>
+      <a href="#">Mon–Sat 8am–5pm</a>
+    </div>
+  </div>
+
+  <!-- HEADER -->
+  <header class="header">
+    <div class="header-inner">
+      <a href="#" onclick="showPage('home'); return false" class="logo">
+        <div class="logo-icon">
+          <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        </div>
+        <div class="logo-text">
+          <div class="logo-name">J.A Baking</div>
+          <div class="logo-sub">Equipment &amp; Ingredients</div>
+        </div>
+      </a>
+
+      <div class="search-bar">
+        <input type="text" placeholder="Search equipment, ingredients, brands…" id="searchInput" />
+        <button onclick="handleSearch()">
+          <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        </button>
+      </div>
+
+      <div class="header-actions">
+        <button class="header-btn" onclick="openModal()">
+          <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <span>Store</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN NAV -->
+  <nav class="nav">
+    <div class="nav-inner">
+      <div class="nav-item active" id="nav-home">
+        <a href="#" onclick="showPage('home'); return false">Home</a>
+      </div>
+      <div class="nav-item">
+        <a href="#" onclick="showPage('products'); return false">Products
+          <svg viewBox="0 0 10 6"><path d="M1 1l4 4 4-4" stroke="#f5e8d8" stroke-width="1.5" fill="none"/></svg>
+        </a>
+        <div class="dropdown">
+          <a href="#" onclick="showPage('category-equipment'); return false">Commercial Products</a>
+          <a href="#" onclick="showPage('category-meatChopping'); return false">Meat Chopping</a>
+          <a href="#" onclick="showPage('category-cooking'); return false">Cooking, Drying and Warming (Steaming)</a>
+          <a href="#" onclick="showPage('category-boiling'); return false">Boiling</a>
+          <a href="#" onclick="showPage('category-cookingPans'); return false">Cooking Pans</a>
+          <a href="#" onclick="showPage('category-bread'); return false">Bread Slicing / Slicer</a>
+          <a href="#" onclick="showPage('category-packaging'); return false">Storage &amp; Packing</a>
+        </div>
+      </div>
+      <div class="nav-item"><a href="#" onclick="showPage('specials'); return false">Specials</a></div>
+      <div class="nav-item">
+        <a href="#" onclick="showPage('services'); return false">Services
+          <svg viewBox="0 0 10 6"><path d="M1 1l4 4 4-4" stroke="#f5e8d8" stroke-width="1.5" fill="none"/></svg>
+        </a>
+        <div class="dropdown">
+          <a href="#" onclick="showPage('delivery'); return false">Delivery</a>
+        </div>
+      </div>
+      <div class="nav-item"><a href="https://wa.me/26663085818" target="_blank" style="color: var(--gold-lt); font-weight: 800;">Buy or Order Now</a></div>
+      <div class="nav-item"><a href="#" onclick="showPage('about'); return false">About Us</a></div>
+      <div class="nav-item"><a href="#" onclick="showPage('contact'); return false">Contact</a></div>
+    </div>
+  </nav>
+
+  <!-- MAIN CONTENT AREA -->
+  <main id="main-content"></main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-main">
+      <div class="footer-brand">
+        <div class="footer-logo-name">J.A Baking</div>
+        <div class="footer-logo-sub">Equipment &amp; Ingredients</div>
+        <p>Your trusted partner for all things baking. Supplying quality equipment and ingredients to home bakers and professionals across the country.</p>
+        <div class="social-links">
+          <a class="social-link" href="https://www.facebook.com/profile.php?id=100083105633006" target="_blank" title="Follow us on Facebook"><svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
+          <a class="social-link" href="#"><svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+          <a class="social-link" href="#"><svg viewBox="0 0 24 24"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 0 0-1.95 1.96A29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58A2.78 2.78 0 0 0 3.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.95A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02"/></svg></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Products</h4>
+        <ul>
+          <li><a href="#" onclick="showPage('category-equipment'); return false">Commercial Products</a></li>
+          <li><a href="#" onclick="showPage('category-meatChopping'); return false">Meat Chopping</a></li>
+          <li><a href="#" onclick="showPage('category-cookingPans'); return false">Cooking Pans</a></li>
+          <li><a href="#" onclick="showPage('category-bread'); return false">Bread Slicing / Slicer</a></li>
+          <li><a href="#" onclick="showPage('specials'); return false">Current Specials</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="#" onclick="showPage('about'); return false">About J.A Baking</a></li>
+          <li><a href="#" onclick="showPage('services'); return false">Our Services</a></li>
+          <li><a href="#" onclick="showPage('careers'); return false">Careers</a></li>
+          <li><a href="#" onclick="showPage('contact'); return false">Contact Us</a></li>
+        </ul>
+      </div>
+      <div class="footer-col footer-contact">
+        <h4>Contact</h4>
+        <p><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.41 2 2 0 0 1 3.58 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.96a16 16 0 0 0 6 6l.92-.92a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.5z"/></svg>63085818</p>
+        <p><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>Mon–Sat | 8am – 5pm</p>
+        <p><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>info@jabaking.co.ls</p>
+        <p><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Maseru, Lesotho</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 J.A Baking Equipment &amp; Ingredients. All rights reserved.</span>
+      <div style="display:flex;gap:20px">
+        <a href="#" onclick="showPage('terms'); return false">Terms &amp; Conditions</a>
+        <a href="#" onclick="showPage('privacy'); return false">Privacy Policy</a>
+        <a href="#" onclick="showPage('cookies'); return false">Cookie Policy</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- STORE MODAL -->
+  <div class="modal-overlay" id="storeModal" onclick="closeModal(event)">
+    <div class="modal">
+      <button class="modal-close" onclick="closeModal()">×</button>
+      <h2>Find a Store</h2>
+      <p>Enter your location to find the nearest J.A Baking store and check product availability.</p>
+      <input type="text" placeholder="Enter your town or city…" id="locationInput" />
+      <div class="modal-btns">
+        <button class="btn-primary" onclick="findStore()">Search</button>
+        <button class="btn-cancel" onclick="closeModal()">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- COOKIE BANNER -->
+  <div class="cookie-banner" id="cookieBanner">
+    <div class="cookie-text">
+      <strong>🍪 We Care About Your Privacy</strong>
+      We use cookies to improve your browsing experience. By continuing you agree to our <a href="#" onclick="showPage('cookies'); return false">cookie policy</a>.
+      <div class="cookie-actions">
+        <button class="btn-accept" onclick="acceptCookies()">Accept All</button>
+      </div>
+    </div>
+    <button class="btn-dismiss" onclick="document.getElementById('cookieBanner').classList.add('hidden')">×</button>
+  </div>
+
+  <!-- TOAST -->
+  <div class="toast" id="toast">
+    <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+    <span id="toastMsg">Done!</span>
+  </div>
+
+  <script>
+    // Complete product database with 5 products per category
+    const productDatabase = {
+      equipment: [
+        { id: 'eq1', brand:"KitchenAid", name:"Professional Stand Mixer 6.9L — Empire Red", price:6999, old:7999, badge:"SALE", color:"p-equipment", image:"1.jpg", category:"equipment" },
+        { id: 'eq2', brand:"Bosch", name:"Universal Plus Mixer — 800W", price:4599, old:null, badge:"NEW", color:"p-equipment", image:"2.jpg", category:"equipment" },
+        { id: 'eq3', brand:"Kenwood", name:"Chef Baker Elite — Titanium", price:5299, old:5899, badge:"SALE", color:"p-equipment", image:"3.jpg", category:"equipment" },
+        { id: 'eq4', brand:"J.A Select", name:"Commercial Dough Sheeter — 600mm", price:12999, old:14999, badge:"SALE", color:"p-equipment", image:"4.jpeg", category:"equipment" },
+        { id: 'eq5', brand:"De Buyer", name:"Heavy-Duty Pastry Blender", price:299, old:null, badge:null, color:"p-equipment", image:"5.jpeg", category:"equipment" },
+        { id: 'eq6', brand:"J.A Select", name:"Commercial Grade Unit 123", price:3499, old:null, badge:"NEW", color:"p-equipment", image:"123.jpeg", category:"equipment" },
+        { id: 'eq7', brand:"J.A Select", name:"Commercial Grade Unit 1234", price:4599, old:null, badge:"NEW", color:"p-equipment", image:"1234.jpeg", category:"equipment" },
+        { id: 'eq8', brand:"J.A Select", name:"Commercial Grade Unit 12345", price:5699, old:null, badge:"NEW", color:"p-equipment", image:"12345.jpeg", category:"equipment" },
+        { id: 'eq9', brand:"J.A Select", name:"Commercial Grade Unit 123456", price:6799, old:null, badge:"NEW", color:"p-equipment", image:"123456.jpg", category:"equipment" }
+      ],
+      meatChopping: [
+        { id: 'mc1', brand:"J.A Select", name:"Industrial Meat Grinder", price:3499, old:3999, badge:"SALE", color:"p-ingredients", image:"6.jpeg", category:"meatChopping" },
+        { id: 'mc2', brand:"Victorinox", name:"Butcher Knife Set", price:1899, old:null, badge:"NEW", color:"p-ingredients", image:"7.jpg", category:"meatChopping" },
+        { id: 'mc3', brand:"J.A Select", name:"Bone Saw Machine", price:8599, old:9499, badge:"SALE", color:"p-ingredients", image:"8.jpeg", category:"meatChopping" },
+        { id: 'mc4', brand:"Global", name:"Cleaver Knife", price:2449, old:null, badge:null, color:"p-ingredients", image:"9.jpeg", category:"meatChopping" },
+        { id: 'mc5', brand:"J.A Select", name:"Manual Meat Mincer", price:879, old:1029, badge:"SALE", color:"p-ingredients", image:"10.jpeg", category:"meatChopping" }
+      ],
+      cooking: [
+        { id: 'ck1', brand:"Le Creuset", name:"Dutch Oven 26cm", price:3899, old:4499, badge:"SALE", color:"p-cooking", image:"12.jpg", category:"cooking" },
+        { id: 'ck2', brand:"Staub", name:"Ceramic Baking Dish", price:1299, old:1499, badge:"SALE", color:"p-cooking", image:"13.jpeg", category:"cooking" },
+        { id: 'ck3', brand:"J.A Select", name:"Non-Stick Pan Set", price:899, old:null, badge:"NEW", color:"p-cooking", image:"14.jpeg", category:"cooking" },
+        { id: 'ck4', brand:"Lodge", name:"Cast Iron Griddle", price:649, old:null, badge:null, color:"p-cooking", image:"15.jpeg", category:"cooking" },
+        { id: 'ck5', brand:"Tefal", name:"Stainless Pot Set", price:1599, old:1899, badge:"SALE", color:"p-cooking", image:"16.jpeg", category:"cooking" },
+        { id: 'ck6', brand:"J.A Select", name:"Industrial Food Dryer", price:4599, old:4999, badge:"SALE", color:"p-cooking", image:"17.jpeg", category:"cooking" },
+        { id: 'ck7', brand:"J.A Select", name:"Commercial Steamer", price:3299, old:null, badge:"NEW", color:"p-cooking", image:"18.jpg", category:"cooking" },
+        { id: 'ck8', brand:"Warm-it", name:"Electric Food Warmer", price:1299, old:1499, badge:"SALE", color:"p-cooking", image:"19.jpeg", category:"cooking" },
+        { id: 'ck9', brand:"J.A Select", name:"Atmospheric Steamer", price:2899, old:3199, badge:"SALE", color:"p-cooking", image:"20.jpg", category:"cooking" },
+        { id: 'ck10', brand:"Chef-Pro", name:"Dehydrator Machine", price:2199, old:null, badge:"NEW", color:"p-cooking", image:"21.jpeg", category:"cooking" },
+        { id: 'ck11', brand:"J.A Select", name:"Rice & Vegetable Steamer", price:899, old:1099, badge:"SALE", color:"p-cooking", image:"22.jpeg", category:"cooking" },
+        { id: 'ck13', brand:"J.A Select", name:"Bain Marie Warmer", price:3499, old:null, badge:null, color:"p-cooking", image:"24.jpeg", category:"cooking" },
+        { id: 'ck15', brand:"J.A Select", name:"Plate Warmer Cabinet", price:2599, old:2899, badge:"SALE", color:"p-cooking", image:"26.jpeg", category:"cooking" }
+      ],
+      boiling: [
+        { id: 'bl1', brand:"J.A Select", name:"Professional Stock Pot 20L", price:799, old:899, badge:"SALE", color:"p-boiling", image:"b.jpeg", category:"boiling" },
+        { id: 'bl2', brand:"Fissler", name:"Vitavit Premium Pressure Cooker", price:2799, old:3199, badge:"SALE", color:"p-boiling", image:"b1.jpg", category:"boiling" },
+        { id: 'bl3', brand:"WMF", name:"Perfect Plus Pressure Cooker", price:2399, old:null, badge:"NEW", color:"p-boiling", image:"b2.jpg", category:"boiling" },
+        { id: 'bl4', brand:"J.A Select", name:"Double Boiler Set 3L", price:549, old:null, badge:null, color:"p-boiling", image:"b3.jpeg", category:"boiling" },
+        { id: 'bl5', brand:"Le Creuset", name:"Enameled Steel Stockpot", price:3299, old:3699, badge:"SALE", color:"p-boiling", image:"b4.jpeg", category:"boiling" },
+        { id: 'bl6', brand:"J.A Select", name:"Industrial Boiling Pan", price:4599, old:4999, badge:"SALE", color:"p-boiling", image:"b5.jpeg", category:"boiling" },
+        { id: 'bl7', brand:"Chef-Master", name:"Copper Boiling Pot", price:1899, old:null, badge:"NEW", color:"p-boiling", image:"b6.jpeg", category:"boiling" },
+        { id: 'bl9', brand:"Pro-Boil", name:"High Capacity Stock Pot", price:3899, old:4299, badge:"SALE", color:"p-boiling", image:"b8.jpg", category:"boiling" },
+        { id: 'bl10', brand:"J.A Select", name:"Digital Pressure Cooker", price:1599, old:null, badge:"NEW", color:"p-boiling", image:"b9.jpg", category:"boiling" }
+      ],
+      cookingPans: [
+        { id: 'cp1', brand:"J.A Select", name:"Professional Non-Stick Pan", price:449, old:549, badge:"SALE", color:"p-brown", image:"p.jpg", category:"cookingPans" },
+        { id: 'cp2', brand:"Tefal", name:"Deep Sauté Pan with Lid", price:899, old:null, badge:"NEW", color:"p-brown", image:"p1.jpg", category:"cookingPans" },
+        { id: 'cp3', brand:"J.A Select", name:"Cast Iron Skillet", price:389, old:459, badge:"SALE", color:"p-brown", image:"p2.jpg", category:"cookingPans" },
+        { id: 'cp4', brand:"KitchenAid", name:"Stainless Steel Frying Pan", price:749, old:null, badge:null, color:"p-brown", image:"p3.jpg", category:"cookingPans" },
+        { id: 'cp5', brand:"J.A Select", name:"Grill Pan — Square", price:299, old:349, badge:"SALE", color:"p-brown", image:"p4.jpg", category:"cookingPans" },
+        { id: 'cp6', brand:"Pro-Chef", name:"Copper Core Pan", price:1299, old:1499, badge:"SALE", color:"p-brown", image:"p5.jpg", category:"cookingPans" }
+      ],
+      bread: [
+        { id: 'br1', brand:"J.A Select", name:"Commercial Bread Slicer", price:4899, old:5499, badge:"SALE", color:"p-bread", image:"Br1.jpeg", category:"bread" },
+        { id: 'br2', brand:"Slicer-Pro", name:"Automatic Slicing Machine", price:7299, old:null, badge:"NEW", color:"p-bread", image:"Br2.jpeg", category:"bread" },
+        { id: 'br3', brand:"J.A Select", name:"Manual Bread Slicer Guide", price:349, old:429, badge:"SALE", color:"p-bread", image:"Br3.jpg", category:"bread" }
+      ],
+      packaging: [
+        { id: 'pk1', brand:"J.A Select", name:"Kraft Bakery Boxes 50pc — 20cm", price:299, old:349, badge:"SALE", color:"p-storage", image:"f1.jpeg", category:"packaging" },
+        { id: 'pk2', brand:"J.A Select", name:"Cellophane Bags 100pc", price:89, old:null, badge:"NEW", color:"p-storage", image:"f2.jpg", category:"packaging" },
+        { id: 'pk3', brand:"CakeBoard", name:"Drum Cake Boards 12pc", price:249, old:289, badge:"SALE", color:"p-storage", image:"f3.jpeg", category:"packaging" },
+        { id: 'pk4', brand:"J.A Select", name:"Cupcake Boxes 24pc", price:179, old:null, badge:null, color:"p-storage", image:"f4.jpeg", category:"packaging" },
+        { id: 'pk5', brand:"Ribbon", name:"Bakery Gift Tags 50pc", price:59, old:69, badge:"SALE", color:"p-storage", image:"f5.webp", category:"packaging" },
+        { id: 'pk6', brand:"J.A Select", name:"Plastic Storage Containers", price:149, old:199, badge:"SALE", color:"p-storage", image:"f6.jpeg", category:"packaging" },
+        { id: 'pk7', brand:"J.A Select", name:"Industrial Packing Tape", price:49, old:null, badge:"NEW", color:"p-storage", image:"f7.webp", category:"packaging" }
+      ]
+    };
+
+    function renderProductGrid(products, containerId = 'main-content') {
+      const container = document.getElementById(containerId);
+      if (!container) return;
+      
+      container.innerHTML = `
+        <div class="section">
+          <div class="product-grid">
+            ${products.map(p => `
+              <div class="product-card" onclick="event.stopPropagation()">
+                <div class="product-img ${p.color}">
+                  <img src="${p.image}" alt="${p.name}" />
+                </div>
+              </div>
+            `).join('')}
+          </div>
+        </div>
+      `;
+    }
+
+    function showCategoryPage(category, title) {
+      const products = productDatabase[category] || [];
+      const mainContent = document.getElementById('main-content');
+      
+      mainContent.innerHTML = `
+        <div class="page-header">
+          <h1>${title}</h1>
+          <p>Browse our premium selection of ${title.toLowerCase()}</p>
+        </div>
+        <div class="filter-bar">
+          <div class="filter-inner">
+            <select class="filter-select" onchange="filterCategory('${category}', this.value)">
+              <option value="featured">Sort by: Featured</option>
+              <option value="price-low">Price: Low to High</option>
+              <option value="price-high">Price: High to Low</option>
+              <option value="newest">Newest First</option>
+            </select>
+            <div class="filter-tags">
+              <span class="filter-tag active" onclick="filterBrand('${category}', 'all')">All</span>
+              <span class="filter-tag" onclick="filterBrand('${category}', 'J.A Select')">J.A Select</span>
+              <span class="filter-tag" onclick="filterBrand('${category}', 'KitchenAid')">KitchenAid</span>
+              <span class="filter-tag" onclick="filterBrand('${category}', 'Wilton')">Wilton</span>
+            </div>
+          </div>
+        </div>
+        <div id="category-products"></div>
+      `;
+      
+      renderProductGrid(products, 'category-products');
+    }
+
+    function filterCategory(category, sortBy) {
+      let products = [...productDatabase[category]];
+      
+      if (sortBy === 'price-low') {
+        products.sort((a, b) => a.price - b.price);
+      } else if (sortBy === 'price-high') {
+        products.sort((a, b) => b.price - a.price);
+      } else if (sortBy === 'newest') {
+        products.sort((a, b) => (b.badge === 'NEW' ? 1 : 0) - (a.badge === 'NEW' ? 1 : 0));
+      }
+      
+      renderProductGrid(products, 'category-products');
+    }
+
+    function filterBrand(category, brand) {
+      const products = brand === 'all' 
+        ? productDatabase[category] 
+        : productDatabase[category].filter(p => p.brand === brand);
+      
+      renderProductGrid(products, 'category-products');
+      
+      // Update active tag
+      document.querySelectorAll('.filter-tag').forEach(tag => {
+        tag.classList.remove('active');
+        if (tag.textContent === brand || (brand === 'all' && tag.textContent === 'All')) {
+          tag.classList.add('active');
+        }
+      });
+    }
+
+    function showHomePage() {
+      const mainContent = document.getElementById('main-content');
+      mainContent.innerHTML = `
+        <!-- HERO SLIDER -->
+        <section class="hero">
+          <div class="slide slide-1 active">
+            <div class="slide-bg"></div>
+            <div class="slide-overlay"></div>
+            <div class="slide-content">
+              <div class="slide-tag">🥐 New Arrivals</div>
+              <h1 class="slide-title">Everything You Need<br>to Bake Beautifully</h1>
+              <p class="slide-subtitle">Premium baking equipment and quality ingredients, all under one roof. From hobbyist to professional.</p>
+              <a href="#" onclick="showPage('products'); return false" class="btn-primary">
+                Shop Now
+                <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+              </a>
+              <a href="#" onclick="showPage('specials'); return false" class="btn-outline">View Specials</a>
+            </div>
+          </div>
+          <div class="slide slide-2">
+            <div class="slide-bg"></div>
+            <div class="slide-overlay"></div>
+            <div class="slide-content">
+              <div class="slide-tag">🎂 Cake Season</div>
+              <h1 class="slide-title">Cake Decorating<br>Made Easy</h1>
+              <p class="slide-subtitle">Fondants, edible colours, piping sets and more. Create cakes that wow at every event.</p>
+              <a href="#" onclick="showPage('category-decorating'); return false" class="btn-primary">
+                Explore Decorating
+                <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+              </a>
+            </div>
+          </div>
+          <div class="slide slide-3">
+            <div class="slide-bg"></div>
+            <div class="slide-overlay"></div>
+            <div class="slide-content">
+              <div class="slide-tag">💰 Monthly Specials</div>
+              <h1 class="slide-title">Savings on<br>Top Ingredients</h1>
+              <p class="slide-subtitle">Up to 25% off flour, sugar, yeast, chocolate and baking essentials this month only.</p>
+              <a href="#" onclick="showPage('specials'); return false" class="btn-primary">
+                See All Specials
+                <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+              </a>
+            </div>
+          </div>
+          <button class="slider-arrow prev" onclick="changeSlide(-1)">
+            <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+          </button>
+          <button class="slider-arrow next" onclick="changeSlide(1)">
+            <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+          </button>
+          <div class="slider-dots">
+            <div class="dot active" onclick="goSlide(0)"></div>
+            <div class="dot" onclick="goSlide(1)"></div>
+            <div class="dot" onclick="goSlide(2)"></div>
+          </div>
+        </section>
+
+        <!-- INFO STRIPS -->
+        <div class="info-strips">
+          <div class="info-strips-inner">
+            <div class="info-strip">
+              <div class="strip-icon"><svg viewBox="0 0 24 24"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg></div>
+              <div><div class="strip-title">Fast Delivery</div><div class="strip-desc">Nationwide delivery to your door</div></div>
+            </div>
+            <div class="info-strip">
+              <div class="strip-icon"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+              <div><div class="strip-title">Quality Guaranteed</div><div class="strip-desc">All ingredients are food-grade certified</div></div>
+            </div>
+            <div class="info-strip">
+              <div class="strip-icon"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
+              <div><div class="strip-title">Expert Advice</div><div class="strip-desc">Our baking specialists are here to help</div></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- CATEGORIES -->
+        <div class="categories">
+          <div class="categories-inner">
+            <div class="section-title">Shop by <span>Category</span></div>
+            <div class="cat-grid">
+              <a href="#" onclick="showPage('category-equipment'); return false" class="cat-card">
+                <div class="cat-icon">
+                  <svg viewBox="0 0 48 48" fill="none" stroke="#7B3F00" stroke-width="2.2">
+                    <ellipse cx="24" cy="34" rx="16" ry="8"/><path d="M8 34 V22 Q24 10 40 22 V34"/><line x1="24" y1="10" x2="24" y2="6"/><path d="M20 6 h8"/>
+                  </svg>
+                </div>
+                Commercial Products
+              </a>
+              <a href="#" onclick="showPage('category-meatChopping'); return false" class="cat-card">
+                <div class="cat-icon">
+                  <svg viewBox="0 0 48 48" fill="none" stroke="#7B3F00" stroke-width="2.2">
+                    <rect x="8" y="14" width="32" height="24" rx="2"/><path d="M12 14v-4h24v4M18 38v4M30 38v4"/>
+                  </svg>
+                </div>
+                Meat Chopping
+              </a>
+              <a href="#" onclick="showPage('category-cooking'); return false" class="cat-card">
+                <div class="cat-icon">
+                  <svg viewBox="0 0 48 48" fill="none" stroke="#7B3F00" stroke-width="2.2">
+                    <path d="M10 28 h28 v4 a6 6 0 0 1-6 6 H16 a6 6 0 0 1-6-6 V28z"/><ellipse cx="24" cy="28" rx="14" ry="5"/><line x1="18" y1="14" x2="18" y2="24"/><line x1="24" y1="10" x2="24" y2="24"/><line x1="30" y1="14" x2="30" y2="24"/>
+                  </svg>
+                </div>
+                Cooking, Drying and Warming (Steaming)
+              </a>
+              <a href="#" onclick="showPage('category-boiling'); return false" class="cat-card">
+                <div class="cat-icon">
+                  <svg viewBox="0 0 48 48" fill="none" stroke="#7B3F00" stroke-width="2.2">
+                    <path d="M12 20 h24 v16 a4 4 0 0 1-4 4 H16 a4 4 0 0 1-4-4 V20z"/><path d="M8 20 h32"/><path d="M18 20 V14 h12 V20"/><circle cx="20" cy="30" r="2" fill="#7B3F00" opacity=".3"/><circle cx="28" cy="26" r="1.5" fill="#7B3F00" opacity=".3"/><path d="M20 14 Q22 10 20 7" stroke-linecap="round"/><path d="M28 14 Q30 10 28 7" stroke-linecap="round"/>
+                  </svg>
+                </div>
+                Boiling
+              </a>
+              <a href="#" onclick="showPage('category-cookingPans'); return false" class="cat-card">
+                <div class="cat-icon">
+                  <svg viewBox="0 0 48 48" fill="none" stroke="#7B3F00" stroke-width="2.2">
+                    <path d="M16 12 h16 v6 l4 4 v10 a4 4 0 0 1-4 4 H16 a4 4 0 0 1-4-4 V22 l4-4 V12z"/><line x1="12" y1="26" x2="36" y2="26"/><line x1="24" y1="12" x2="24" y2="26"/>
+                  </svg>
+                </div>
+                Cooking Pans
+              </a>
+              <a href="#" onclick="showPage('category-bread'); return false" class="cat-card">
+                <div class="cat-icon">
+                  <svg viewBox="0 0 48 48" fill="none" stroke="#7B3F00" stroke-width="2.2">
+                    <rect x="8" y="20" width="32" height="18" rx="3"/><path d="M16 20 V14 a8 4 0 0 1 16 0 V20"/><line x1="8" y1="30" x2="40" y2="30"/>
+                  </svg>
+                </div>
+                Bread Slicing / Slicer
+              </a>
+              <a href="#" onclick="showPage('category-packaging'); return false" class="cat-card">
+                <div class="cat-icon">
+                  <svg viewBox="0 0 48 48" fill="none" stroke="#7B3F00" stroke-width="2.2">
+                    <rect x="10" y="14" width="28" height="24" rx="3"/><path d="M16 14 V10 h16 v4"/><line x1="10" y1="24" x2="38" y2="24"/><line x1="24" y1="14" x2="24" y2="38"/>
+                  </svg>
+                </div>
+                Storage &amp; Packing
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- SPECIALS BAND -->
+        <div class="specials-band">
+          <div class="specials-band-inner">
+            <div class="specials-label">
+              🔥 This Month's Specials
+              <span class="badge">Up to 25% OFF</span>
+            </div>
+            <a href="#" onclick="showPage('specials'); return false">View All Specials →</a>
+          </div>
+        </div>
+
+        <!-- FEATURED PRODUCTS -->
+        <div class="section">
+          <div class="section-header">
+            <div class="section-title">Featured <span>Products</span></div>
+            <a href="#" onclick="showPage('products'); return false" class="view-all">View All
+              <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </a>
+          </div>
+          <div id="featured-products"></div>
+        </div>
+
+        <!-- PROMO CARDS -->
+        <div class="promo-row">
+          <a href="#" onclick="showPage('delivery'); return false" class="promo-card promo-1">
+            <div class="promo-bg"></div>
+            <div class="promo-overlay"></div>
+            <div class="promo-content">
+              <div class="promo-title">Fast Delivery<br>to Your Door</div>
+              <p class="promo-sub">We deliver equipment and ingredients nationwide. Order before 1pm for same-day dispatch.</p>
+              <span class="btn-primary" style="font-size:13px;padding:11px 22px">
+                Learn More
+                <svg viewBox="0 0 24 24" style="width:15px;height:15px;stroke:white;fill:none;stroke-width:2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+              </span>
+            </div>
+          </a>
+        </div>
+
+        <!-- ABOUT SECTION -->
+        <div class="credit-section">
+          <div class="credit-inner">
+            <div class="credit-text">
+              <h2>Premium Baking Supplies <span>for Everyone</span></h2>
+              <p>Whether you're a home baker, a professional pastry chef, or a bakery owner, J.A Baking has the right tools and ingredients at the right price.</p>
+              <a href="#" onclick="showPage('products'); return false" class="btn-primary" style="display:inline-flex;align-items:center;gap:8px">
+                Browse All Products
+                <svg viewBox="0 0 24 24" style="width:17px;height:17px;stroke:white;fill:none;stroke-width:2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+              </a>
+            </div>
+            <div class="benefit-list">
+              <div class="benefit-item"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Wide range of professional and home baking equipment</div>
+              <div class="benefit-item"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>All ingredients sourced from certified food-grade suppliers</div>
+              <div class="benefit-item"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Friendly and knowledgeable baking specialists in-store</div>
+              <div class="benefit-item"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Online ordering with fast nationwide delivery</div>
+            </div>
+          </div>
+        </div>
+      `;
+
+      // Render featured products (mix of categories)
+      const featured = [
+        ...productDatabase.equipment.slice(0, 2),
+        ...productDatabase.meatChopping.slice(0, 1),
+        ...productDatabase.cookingPans.slice(0, 1)
+      ];
+      renderProductGrid(featured, 'featured-products');
+      
+      // Initialize slider
+      initSlider();
+    }
+
+    function showSpecialsPage() {
+      const mainContent = document.getElementById('main-content');
+      const specials = [
+        ...productDatabase.equipment.filter(p => p.badge === 'SALE'),
+        ...productDatabase.meatChopping.filter(p => p.badge === 'SALE'),
+        ...productDatabase.cookingPans.filter(p => p.badge === 'SALE')
+      ];
+      
+      mainContent.innerHTML = `
+        <div class="page-header">
+          <h1>Special Offers</h1>
+          <p>Save big on premium baking equipment and ingredients</p>
+        </div>
+        <div class="filter-bar">
+          <div class="filter-inner">
+            <select class="filter-select" onchange="filterSpecials(this.value)">
+              <option value="all">All Specials</option>
+              <option value="equipment">Equipment</option>
+              <option value="meatChopping">Meat Chopping</option>
+              <option value="decorating">Decorating</option>
+            </select>
+          </div>
+        </div>
+        <div id="specials-products"></div>
+      `;
+      
+      renderProductGrid(specials, 'specials-products');
+    }
+
+    function filterSpecials(category) {
+      let specials = [];
+      if (category === 'all') {
+        specials = [
+          ...productDatabase.equipment.filter(p => p.badge === 'SALE'),
+          ...productDatabase.meatChopping.filter(p => p.badge === 'SALE'),
+          ...productDatabase.cookingPans.filter(p => p.badge === 'SALE')
+        ];
+      } else {
+        specials = productDatabase[category].filter(p => p.badge === 'SALE');
+      }
+      renderProductGrid(specials, 'specials-products');
+    }
+
+    function showProductsPage() {
+      const allProducts = [
+        ...productDatabase.equipment,
+        ...productDatabase.meatChopping,
+        ...productDatabase.cooking,
+        ...productDatabase.boiling,
+        ...productDatabase.cookingPans,
+        ...productDatabase.bread,
+        ...productDatabase.packaging
+      ];
+      
+      document.getElementById('main-content').innerHTML = `
+        <div class="page-header">
+          <h1>All Products</h1>
+          <p>Discover our complete range of baking and butchery equipment</p>
+        </div>
+        <div class="filter-bar">
+          <div class="filter-inner">
+            <select class="filter-select" onchange="filterAllProducts(this.value)">
+              <option value="all">All Categories</option>
+              <option value="equipment">Commercial Products</option>
+              <option value="meatChopping">Meat Chopping</option>
+              <option value="cooking">Cooking, Drying and Warming (Steaming)</option>
+              <option value="boiling">Boiling</option>
+              <option value="cookingPans">Cooking Pans</option>
+              <option value="bread">Bread Slicing / Slicer</option>
+              <option value="packaging">Storage & Packing</option>
+            </select>
+          </div>
+        </div>
+        <div id="all-products"></div>
+      `;
+      
+      renderProductGrid(allProducts, 'all-products');
+    }
+
+    function filterAllProducts(category) {
+      const products = category === 'all' 
+        ? [].concat(...Object.values(productDatabase))
+        : productDatabase[category];
+      renderProductGrid(products, 'all-products');
+    }
+
+    function showPage(page) {
+      // Update active nav
+      document.querySelectorAll('.nav-item').forEach(item => item.classList.remove('active'));
+      if (page === 'home') {
+        document.getElementById('nav-home').classList.add('active');
+        showHomePage();
+      } else if (page === 'specials') {
+        showSpecialsPage();
+      } else if (page === 'products') {
+        showProductsPage();
+      } else if (page.startsWith('category-')) {
+        const category = page.replace('category-', '');
+        const titles = {
+          equipment: 'Commercial Products',
+          meatChopping: 'Meat Chopping',
+          cooking: 'Cooking, Drying and Warming (Steaming)',
+          boiling: 'Boiling',
+          cookingPans: 'Cooking Pans',
+          bread: 'Bread Slicing / Slicer',
+          packaging: 'Storage & Packing'
+        };
+        showCategoryPage(category, titles[category]);
+      } else if (page === 'services') {
+        document.getElementById('main-content').innerHTML = `
+          <div class="page-header">
+            <h1>Our Services</h1>
+            <p>Helping you find the right tools for your baking success</p>
+          </div>
+          <div class="section" style="max-width: 1000px; margin: 0 auto; padding: 60px 24px;">
+            <div style="text-align: center; margin-bottom: 50px;">
+              <h2 style="font-family: 'Playfair Display', serif; color: var(--brown); font-size: 28px; margin-bottom: 20px;">At J.A Baking Equipment & Ingredients, we aim to make baking easier and more accessible.</h2>
+              <p style="font-size: 18px; color: var(--grey); max-width: 800px; margin: 0 auto; line-height: 1.6;">
+                By providing quality products and helpful support to our customers, our services are designed to assist both home bakers and professional bakers in finding the tools and ingredients they need.
+              </p>
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px;">
+              <div style="background: var(--cream); padding: 35px; border-radius: 12px; border: 1px solid var(--border);">
+                <h3 style="font-family: 'Playfair Display', serif; color: var(--brown); font-size: 22px; margin-bottom: 15px;">Baking Equipment Supply</h3>
+                <p style="font-size: 15px; color: var(--grey); line-height: 1.7;">
+                  We provide a wide range of baking tools, equipment, and ingredients for different baking needs. Whether you are baking at home or running a bakery, we strive to supply reliable products that help you achieve great results.
+                </p>
+              </div>
+
+              <div style="background: white; padding: 35px; border-radius: 12px; border: 1.5px solid var(--border);">
+                <h3 style="font-family: 'Playfair Display', serif; color: var(--brown); font-size: 22px; margin-bottom: 15px;">Product Sourcing</h3>
+                <p style="font-size: 15px; color: var(--grey); line-height: 1.7;">
+                  Many of our products are sourced from trusted manufacturers in China, allowing us to offer a variety of baking tools that may not always be available locally. If you are looking for a specific baking item that we do not currently have in stock, you can contact us and we will check whether it can be included in our next stock order.
+                </p>
+              </div>
+
+              <div style="background: white; padding: 35px; border-radius: 12px; border: 1.5px solid var(--border);">
+                <h3 style="font-family: 'Playfair Display', serif; color: var(--brown); font-size: 22px; margin-bottom: 15px;">Customer Assistance</h3>
+                <p style="font-size: 15px; color: var(--grey); line-height: 1.7;">
+                  Our team is always ready to help customers choose the right equipment and ingredients for their business needs. If you are unsure about which tools or products to use, feel free to ask and we will guide you.
+                </p>
+              </div>
+
+              <div style="background: var(--dark); color: white; padding: 35px; border-radius: 12px;">
+                <h3 style="font-family: 'Playfair Display', serif; color: var(--gold-lt); font-size: 22px; margin-bottom: 15px;">Wholesale & Bulk Orders</h3>
+                <p style="font-size: 15px; opacity: 0.9; line-height: 1.7; margin-bottom: 15px;">
+                  We also support wholesale and bulk purchases for:
+                </p>
+                <ul style="list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 10px; font-size: 14px;">
+                  <li style="display: flex; align-items: center; gap: 8px;"><svg viewBox="0 0 24 24" style="width:14px;height:14px;stroke:var(--gold-lt);fill:none;stroke-width:3"><polyline points="20 6 9 17 4 12"/></svg>Bakeries</li>
+                  <li style="display: flex; align-items: center; gap: 8px;"><svg viewBox="0 0 24 24" style="width:14px;height:14px;stroke:var(--gold-lt);fill:none;stroke-width:3"><polyline points="20 6 9 17 4 12"/></svg>Catering</li>
+                  <li style="display: flex; align-items: center; gap: 8px;"><svg viewBox="0 0 24 24" style="width:14px;height:14px;stroke:var(--gold-lt);fill:none;stroke-width:3"><polyline points="20 6 9 17 4 12"/></svg>Schools</li>
+                  <li style="display: flex; align-items: center; gap: 8px;"><svg viewBox="0 0 24 24" style="width:14px;height:14px;stroke:var(--gold-lt);fill:none;stroke-width:3"><polyline points="20 6 9 17 4 12"/></svg>Events</li>
+                </ul>
+                <p style="margin-top: 20px; font-size: 13px; opacity: 0.8; font-style: italic;">
+                  Businesses interested in larger orders are welcome to contact us for more information.
+                </p>
+              </div>
+            </div>
+          </div>
+        `;
+      } else if (page === 'delivery') {
+        document.getElementById('main-content').innerHTML = `
+          <div class="page-header">
+            <h1>Delivery Information</h1>
+            <p>Assisting you with transport arrangements</p>
+          </div>
+          <div class="section" style="max-width: 900px; margin: 0 auto; padding: 60px 24px;">
+            <div style="background: var(--cream); padding: 40px; border-radius: 12px; border: 1px solid var(--border); margin-bottom: 40px;">
+              <h2 style="font-family: 'Playfair Display', serif; color: var(--brown); font-size: 28px; margin-bottom: 20px;">At the moment, J.A Baking Equipment & Ingredients does not provide its own delivery service.</h2>
+              <p style="font-size: 17px; line-height: 1.8; color: var(--grey); margin-bottom: 20px;">
+                However, we understand that some customers may need assistance transporting their purchases. If you require delivery, we can help connect you with reliable delivery drivers who operate around Maseru.
+              </p>
+              <p style="font-size: 17px; line-height: 1.8; color: var(--grey);">
+                These drivers provide transport services independently and can deliver your items to your location.
+              </p>
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-bottom: 40px;">
+              <div style="background: white; padding: 30px; border-radius: 12px; border: 1.5px solid var(--border);">
+                <h3 style="font-family: 'Playfair Display', serif; color: var(--dark); font-size: 22px; margin-bottom: 20px; border-bottom: 2px solid var(--gold); display: inline-block;">How It Works</h3>
+                <ul style="list-style: none; display: flex; flex-direction: column; gap: 15px; margin-top: 15px;">
+                  <li style="display: flex; gap: 12px; color: var(--grey); line-height: 1.5;">
+                    <span style="background: var(--gold); color: var(--dark); width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-weight: bold; font-size: 14px;">1</span>
+                    Place your order with us.
+                  </li>
+                  <li style="display: flex; gap: 12px; color: var(--grey); line-height: 1.5;">
+                    <span style="background: var(--gold); color: var(--dark); width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-weight: bold; font-size: 14px;">2</span>
+                    If you need delivery, let us know.
+                  </li>
+                  <li style="display: flex; gap: 12px; color: var(--grey); line-height: 1.5;">
+                    <span style="background: var(--gold); color: var(--dark); width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-weight: bold; font-size: 14px;">3</span>
+                    We will help connect you with a delivery driver who can transport your items to you.
+                  </li>
+                </ul>
+                <p style="margin-top: 20px; font-size: 14px; color: var(--mid); font-style: italic; border-top: 1px solid var(--border); padding-top: 15px;">
+                  Please note that delivery arrangements and payment for the transport service will be handled directly between you and the driver.
+                </p>
+              </div>
+
+              <div style="background: var(--dark); color: white; padding: 30px; border-radius: 12px; display: flex; flex-direction: column; justify-content: center; text-align: center;">
+                <div style="font-size: 40px; margin-bottom: 20px;">🛡️</div>
+                <h3 style="font-family: 'Playfair Display', serif; font-size: 24px; margin-bottom: 15px;">No Need to Worry</h3>
+                <p style="opacity: 0.9; line-height: 1.6;">
+                  We are always happy to assist our customers. If you need help arranging transportation for your items, just let us know and we will guide you through the process.
+                </p>
+              </div>
+            </div>
+          </div>
+        `;
+      } else if (page === 'contact') {
+        document.getElementById('main-content').innerHTML = `
+          <div class="page-header">
+            <h1>Contact Us</h1>
+            <p>We're here to help you with all your baking needs</p>
+          </div>
+          <div class="section" style="max-width: 1000px; margin: 0 auto; padding: 60px 24px;">
+            <div style="text-align: center; margin-bottom: 50px;">
+              <h2 style="font-family: 'Playfair Display', serif; color: var(--brown); font-size: 32px; margin-bottom: 20px;">We’re here to help!</h2>
+              <p style="font-size: 18px; color: var(--grey); max-width: 700px; margin: 0 auto; line-height: 1.6;">
+                Whether you have questions about our products, need assistance with an order, or want to request a specific baking item, feel free to reach out to us. Our team will be happy to assist you.
+              </p>
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-bottom: 60px;">
+              <div style="background: var(--cream); padding: 40px; border-radius: 12px; border: 1px solid var(--border);">
+                <h3 style="font-family: 'Playfair Display', serif; color: var(--dark); font-size: 24px; margin-bottom: 25px; border-bottom: 2px solid var(--gold); display: inline-block;">Get In Touch</h3>
+                
+                <div style="margin-bottom: 25px;">
+                  <strong style="display: block; color: var(--brown); text-transform: uppercase; font-size: 13px; letter-spacing: 1px; margin-bottom: 8px;">Email</strong>
+                  <p style="font-size: 16px; display: flex; align-items: center; gap: 10px;">📧 J.A.baking and ingredients@gmail.com</p>
+                </div>
+
+                <div style="margin-bottom: 25px;">
+                  <strong style="display: block; color: var(--brown); text-transform: uppercase; font-size: 13px; letter-spacing: 1px; margin-bottom: 8px;">Phone</strong>
+                  <p style="font-size: 16px; margin-bottom: 5px; display: flex; align-items: center; gap: 10px;">📞 63085818</p>
+                  <p style="font-size: 16px; display: flex; align-items: center; gap: 10px;">📞 59572853</p>
+                </div>
+
+                <div>
+                  <strong style="display: block; color: var(--brown); text-transform: uppercase; font-size: 13px; letter-spacing: 1px; margin-bottom: 8px;">Our Location</strong>
+                  <p style="font-size: 16px; margin-bottom: 5px; display: flex; align-items: center; gap: 10px;">📍 Maseru, Lesotho</p>
+                  <p style="font-size: 15px; color: var(--grey); margin-left: 25px;">Opposite BEDCO, near Maseru High School</p>
+                  <p style="font-size: 15px; color: var(--mid); margin-top: 15px; font-style: italic;">You are welcome to visit us to explore our baking equipment, ingredients, and supplies.</p>
+                </div>
+              </div>
+
+              <div style="display: flex; flex-direction: column; gap: 30px;">
+                <div style="background: white; padding: 30px; border-radius: 12px; border: 1.5px solid var(--border);">
+                  <h3 style="font-family: 'Playfair Display', serif; color: var(--dark); font-size: 20px; margin-bottom: 12px;">Product Requests</h3>
+                  <p style="font-size: 15px; color: var(--grey); line-height: 1.6;">If you are looking for a specific baking tool, ingredient, or equipment that we do not currently stock, please contact us. Since many of our products are sourced internationally, we may be able to include your request in our next stock order.</p>
+                </div>
+
+                <div style="background: var(--dark); color: white; padding: 25px; border-radius: 12px; text-align: center;">
+                  <p style="font-size: 14px; font-weight: 300; opacity: 0.9;">Response Time: We aim to respond within 24 hours during business days.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        `;
+      } else if (page === 'about') {
+        document.getElementById('main-content').innerHTML = `
+          <div class="page-header">
+            <h1>About J.A Baking</h1>
+            <p>Our story, mission, and vision</p>
+          </div>
+          <div class="section" style="display: flex; gap: 50px; align-items: flex-start; padding: 60px 24px;">
+            <div style="flex: 1;">
+              <img src="images/0.JPG" alt="About J.A Baking" style="width: 100%; height: 450px; object-fit: cover; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,.1);">
+            </div>
+            <div style="flex: 1.5; font-size: 16px; color: var(--grey); line-height: 1.8;">
+              <h2 style="font-family: 'Playfair Display', serif; color: var(--brown); font-size: 28px; margin-bottom: 20px;">At J.A Baking Equipment & Ingredients, our mission is simple: to make quality baking tools and ingredients accessible to everyone — from home bakers to professional pastry chefs.</h2>
+              <p style="margin-bottom: 20px;">Based in Maseru, Lesotho, we specialize in supplying a wide range of baking equipment, decorating tools, packaging materials, and essential ingredients to help our customers create beautiful and delicious baked goods.</p>
+              
+              <h3 style="font-family: 'Playfair Display', serif; color: var(--dark); font-size: 22px; margin-bottom: 12px; border-bottom: 2px solid var(--gold); display: inline-block;">Our Products</h3>
+              <p style="margin-bottom: 20px; margin-top: 15px;">We carefully source many of our products from trusted manufacturers in China, allowing us to offer high-quality baking equipment at affordable prices. By working directly with international suppliers, we are able to bring a diverse selection of baking tools and accessories that may not always be available locally.</p>
+              <p style="margin-bottom: 20px;">Our goal is to ensure that bakers have access to the tools they need to turn their creativity into reality.</p>
+
+              <h3 style="font-family: 'Playfair Display', serif; color: var(--dark); font-size: 22px; margin-bottom: 12px; border-bottom: 2px solid var(--gold); display: inline-block;">Special Requests</h3>
+              <p style="margin-bottom: 20px; margin-top: 15px;">At J.A Baking, we understand that every baker has unique needs. If you see a product elsewhere or are looking for a specific baking tool that we do not currently stock, you are welcome to contact us. We will gladly review the request and check whether it can be included in our next stock order from our suppliers.</p>
+              <p style="margin-bottom: 20px;">Our team is always happy to work with customers to find the right solutions.</p>
+
+              <h3 style="font-family: 'Playfair Display', serif; color: var(--dark); font-size: 22px; margin-bottom: 12px; border-bottom: 2px solid var(--gold); display: inline-block;">Why Choose Us</h3>
+              <ul style="margin-bottom: 24px; margin-top: 15px; display: flex; flex-direction: column; gap: 10px;">
+                <li style="display: flex; align-items: center; gap: 10px;"><svg viewBox="0 0 24 24" style="width:18px;height:18px;stroke:var(--brown);fill:none;stroke-width:3"><polyline points="20 6 9 17 4 12"/></svg>Quality baking equipment and ingredients</li>
+                <li style="display: flex; align-items: center; gap: 10px;"><svg viewBox="0 0 24 24" style="width:18px;height:18px;stroke:var(--brown);fill:none;stroke-width:3"><polyline points="20 6 9 17 4 12"/></svg>Affordable prices through direct sourcing</li>
+                <li style="display: flex; align-items: center; gap: 10px;"><svg viewBox="0 0 24 24" style="width:18px;height:18px;stroke:var(--brown);fill:none;stroke-width:3"><polyline points="20 6 9 17 4 12"/></svg>A growing selection of professional baking tools</li>
+                <li style="display: flex; align-items: center; gap: 10px;"><svg viewBox="0 0 24 24" style="width:18px;height:18px;stroke:var(--brown);fill:none;stroke-width:3"><polyline points="20 6 9 17 4 12"/></svg>Friendly customer support</li>
+                <li style="display: flex; align-items: center; gap: 10px;"><svg viewBox="0 0 24 24" style="width:18px;height:18px;stroke:var(--brown);fill:none;stroke-width:3"><polyline points="20 6 9 17 4 12"/></svg>Ability to request special products</li>
+              </ul>
+
+              <h3 style="font-family: 'Playfair Display', serif; color: var(--dark); font-size: 22px; margin-bottom: 12px; border-bottom: 2px solid var(--gold); display: inline-block;">Our Vision</h3>
+              <p style="margin-bottom: 20px; margin-top: 15px;">We aim to become one of the most trusted baking supply stores in Lesotho, supporting both hobby bakers and professional bakeries with the tools they need to succeed.</p>
+
+              <h3 style="font-family: 'Playfair Display', serif; color: var(--dark); font-size: 22px; margin-bottom: 12px; border-bottom: 2px solid var(--gold); display: inline-block;">Get in Touch</h3>
+              <p style="margin-top: 15px;">If you have any questions or product requests, feel free to contact us. We are always happy to assist you.</p>
+            </div>
+          </div>
+        `;
+      } else {
+        // Generic page
+        document.getElementById('main-content').innerHTML = `
+          <div class="page-header">
+            <h1>${page.charAt(0).toUpperCase() + page.slice(1)}</h1>
+            <p>This page is under construction</p>
+          </div>
+        `;
+      }
+      
+      // Scroll to top
+      window.scrollTo(0, 0);
+    }
+
+    // Slider functionality
+    let currentSlide = 0;
+    let slides, dots;
+    
+    function initSlider() {
+      slides = document.querySelectorAll('.slide');
+      dots = document.querySelectorAll('.dot');
+      
+      if (slides.length) {
+        setInterval(() => changeSlide(1), 5500);
+      }
+    }
+    
+    function goSlide(n) {
+      if (!slides || !slides.length) return;
+      slides[currentSlide].classList.remove('active');
+      if (dots && dots.length) dots[currentSlide].classList.remove('active');
+      currentSlide = (n + slides.length) % slides.length;
+      slides[currentSlide].classList.add('active');
+      if (dots && dots.length) dots[currentSlide].classList.add('active');
+    }
+    
+    function changeSlide(dir) { 
+      goSlide(currentSlide + dir); 
+    }
+
+    // Modal functions
+    function openModal() { 
+      document.getElementById('storeModal').classList.add('open'); 
+    }
+    
+    function closeModal(e) {
+      if (!e || e.target === document.getElementById('storeModal'))
+        document.getElementById('storeModal').classList.remove('open');
+    }
+
+    function findStore() {
+      const location = document.getElementById('locationInput').value;
+      if (location) {
+        closeModal();
+        showToast(`Nearest store to "${location}" found!`);
+      } else {
+        showToast('Please enter a location');
+      }
+    }
+
+    // Toast functions
+    let toastTimer;
+    function showToast(msg) {
+      const toast = document.getElementById('toast');
+      const toastMsg = document.getElementById('toastMsg');
+      toastMsg.textContent = msg;
+      toast.classList.add('show');
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => toast.classList.remove('show'), 3200);
+    }
+
+    // Cookie functions
+    function acceptCookies() {
+      document.getElementById('cookieBanner').classList.add('hidden');
+      localStorage.setItem('cookiesAccepted', 'true');
+      showToast('Cookie preferences saved!');
+    }
+
+    // Search function
+    function handleSearch() {
+      const q = document.getElementById('searchInput').value.trim();
+      if (q) {
+        showToast(`Searching for "${q}"...`);
+      }
+    }
+
+    // Initialize
+    document.addEventListener('DOMContentLoaded', () => {
+      showHomePage();
+      
+      // Check cookies
+      if (localStorage.getItem('cookiesAccepted') === 'true') {
+        document.getElementById('cookieBanner').classList.add('hidden');
+      }
+      
+      // Enter key for search
+      document.getElementById('searchInput').addEventListener('keydown', e => {
+        if (e.key === 'Enter') handleSearch();
+      });
+    });
+  </script>
+
+  <!-- WHATSAPP FLOAT -->
+  <a href="https://wa.me/26663085818" class="whatsapp-float" target="_blank" title="Chat with us on WhatsApp">
+    <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L0 24l6.335-1.662c1.72.937 3.659 1.432 5.631 1.433h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+  </a>
+</body>
+</html>
